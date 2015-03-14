@@ -29,7 +29,9 @@ void main(){
 ifstream file("database.txt",ios::nocreate); //opening the database file.
 clrscr();
 
-class point p[50];//array of points generated.
+class point p[50],//array of points generated.
+      male,//for male cluster mean point.
+      female;//for female cluster mean point.
 
 int option;
 cout<<endl<<"Choose your action from the below options:"
