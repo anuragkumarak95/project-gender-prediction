@@ -13,11 +13,11 @@ class point //creating our individual data as points object to evaluate later.
     point(){x=0;
 	    y=0;
 	    gender='M';}
-    int mean_dist(point a)
+    int mean_dist(point a)//to find the point at which male or female prediction mean point reside.
     { //what is the equation of calculating mean in grapgic geometry.
       return 0;
     }
-    int dist(point a,point b)
+    int dist(point a,point b)//to find distance between the new entry to predict and the male or female cluster mean positions.
     { int d;
       d=0/*??*/;
       return d;
