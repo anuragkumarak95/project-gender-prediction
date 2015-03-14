@@ -13,7 +13,8 @@ it creates clusters of data ranges which are closely positioned to each other an
 Lets implement this algorithm of machine learning to produce a code that could predict the gender of a user throught the provided data about the user ,i,e, their height and weight.
 
 #how to choose the attributes of the graph:
-one should choose those properties as attributes that can very distinctly be seperated and well define the users identity for the given prediction to make. thats why, we took the relation between height and weight in between the male and female clusters as it can very well define 2 diffrent clusters in the graph to predict the new unique users gender. 
+
+One should choose those properties as attributes that can very distinctly be seperated and well define the users identity for the given prediction to make. thats why, we took the relation between height and weight in between the male and female clusters as it can very well define 2 diffrent clusters in the graph to predict the new unique users gender. 
 
 
-#LETS CODE TILL TEH SUNSHINE COMES.....  AK
+#LETS CODE TILL THE SUNSHINE COMES.....  AK
