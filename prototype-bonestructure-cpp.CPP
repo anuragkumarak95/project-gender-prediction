@@ -12,7 +12,7 @@ struct point
   char gender;
 }; //creating our individual data as points object to evaluate later.
 
-    int mean_dist(point p,point a[],int x)//to find the point at which male or female prediction mean point reside.
+    void mean_dist(point p,point a[],int x)//to find the point at which male or female prediction mean point reside.
     { double sum_x=0,avg_x,sum_y=0,avg_y;
       for(int i=0;i<x;i++){sum_x=sum_x+a[i].x;sum_y=sum_y+a[i].y;}
       avg_x=sum_x/x;
@@ -20,7 +20,6 @@ struct point
       p.x=avg_x;
       p.y=avg_y;
       //calculating the average distance between the points in cluster to select as the category defining point.
-      return 0;
     }
 
     double dist(point a,point b)//to find distance between the new entry to predict and the male or female cluster mean positions.
@@ -32,12 +31,12 @@ struct point
 
 void main(){
 
-ifstream file("database.txt",ios::nocreate); //opening the database file.
+fstream file("database.txt",ios::nocreate); //opening the database file.
 clrscr();
 
 struct point p[50],//array of points generated.
-       male,//for male cluster mean point.
-       female;//for female cluster mean point.
+	     male,//for male cluster mean point.
+	     female;//for female cluster mean point.
 
 int option;
 cout<<endl<<"Choose your action from the below options:"
@@ -46,24 +45,63 @@ cout<<endl<<"Choose your action from the below options:"
 cin>>option;//take the option from user.
 
 switch(option) //switch for option:: start
- { case 1:
+ { case 1:double h,w;char gen;
+	  cout<<endl<<"Enter the height:";
+	  cin>>h;
+	  cout<<endl<<"Enter the weight:";
+	  cin>>w;
+	  cout<<endl<<"Enter the gender:[m/f] ";
+	  cin>>gen;
+
+	  if(file.good())
+	  { file<<h;
+	    file<<w;
+	    file<<gen;
+	    cout<<"Learning database is updated. Thank you.";
+	  }
    break;//to learn the relationship between the height:weight ratio and the gender(through K-map-cluster-algorithm)
 
-   case 2:double h,w;
+   case 2:double ht,wt;
 	  cout<<endl<<"Enter your height:";
-	  cin>>h;
+	  cin>>ht;
 	  cout<<endl<<"Enter your weight:";
-	  cin>>w;
-	  p[0].x=h;p[0].y=w;
+	  cin>>wt;
+
+	  /*put the code here to fill the array of points with all
+	  the data in database and then run the average point calculating
+	  algorithm to generate the position of male and female
+	  predictive positions(mean positions of the male and female cluster in the k map cluster).*/
+
+	  p[0].x=ht;p[0].y=wt;
 	  male.x=0;male.y=0;female.x=100;female.y=100;
 	  double distance_m=dist(male,p[0]),distance_f=dist(female,p[0]);
 	  //calculating the distance of the user point to the mean category predictive point.
+
 	  if(distance_m>distance_f){cout<<endl<<"This data represents a female.";}
-	  else{cout<<endl<<"This data represents a male.";}
+	  else{cout<<endl<<"This data represents a male.";}//the code prediction is being desplayed.
+
+	  //now verifying the prediction to be true or not from the user.
+	  char chk=' ',g;
+	  cout<<endl<<"Was the prediction true? [y/n]::";
+	  cin>>chk;
+	  if(chk=='y'||chk=='Y')
+	  { if(distance_m>distance_f){g='f';}
+	    else{g='m';}
+	  }
+	  else if(chk=='n'||chk=='N')
+	  { if(distance_m>distance_f){g='m';}
+	    else{g='f';}
+	  }
+
+	  if(file.good())//filling the learning database according to the feedback.
+	  { file<<ht;
+	    file<<wt;
+	    file<<g;
+	  }
    break;//to predict the users gender through the data provided..
 
    default:cout<<"Choose the options correctly\n press ENTER to reset.";
-	   getch();main();
+	  getch();main();
  }//switch end:
 
 if(file.good())//verify if the file has opened correctly.
