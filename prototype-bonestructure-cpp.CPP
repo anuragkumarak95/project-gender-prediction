@@ -68,9 +68,9 @@ cin>>option;//take the option from user.
 
 switch(option) //switch for option:: start
  { case 1:double h,w;char gen;
-	  cout<<endl<<"Enter the height:";
+	  cout<<endl<<"Enter the height:\n[format foot.inches eg 6foot5inches = 6.5]::";
 	  cin>>h;
-	  cout<<endl<<"Enter the weight:";
+	  cout<<endl<<"Enter the weight:[format in KGs]::";
 	  cin>>w;
 	  cout<<endl<<"Enter the gender:[m/f] ";
 	  cin>>gen;
@@ -85,9 +85,9 @@ switch(option) //switch for option:: start
    break;//to learn the relationship between the height:weight ratio and the gender(through K-map-cluster-algorithm)
 
    case 2:double ht,wt;
-	  cout<<endl<<"Enter your height:";
+	  cout<<endl<<"Enter your height:\n[format foot.inches eg 6foot5inches = 6.5]::";
 	  cin>>ht;
-	  cout<<endl<<"Enter your weight:";
+	  cout<<endl<<"Enter your weight:[format in KGs]::";
 	  cin>>wt;
 
 	  mean_dist(male,female,file);
