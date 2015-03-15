@@ -14,12 +14,10 @@ struct point
 
     void mean_dist(point a,point b,fstream& f)//to find the point at which male or female prediction mean point reside.
     { if(f.good())
-      {
-      int x,ht,wt,gen,count_m=0,count_f=0,sum_m_x=0,
+      {f.seekg(0,ios::beg);
+      int ht,wt,gen,count_m=0,count_f=0,sum_m_x=0,
 	  sum_m_y=0,sum_f_x=0,sum_f_y=0,avg_m_x,avg_m_y,avg_f_x,avg_f_y;
-      f>>x;
-
-      for(int i=0;i<x;i++)
+      while(f.eof()==0)
       { f>>ht;
 	f>>wt;
 	f>>gen;
@@ -55,10 +53,10 @@ struct point
 
 void main(){
 
-fstream file("database.txt",ios::nocreate,ios::app); //opening the database file.
+fstream file("database.tdxt",ios::nocreate,ios::app); //opening the database file.
 clrscr();
 
-struct point p[50],//array of points generated.
+struct point p,//points generated.
 	     male,//for male cluster mean point.
 	     female;//for female cluster mean point.
 
@@ -78,15 +76,9 @@ switch(option) //switch for option:: start
 	  cin>>gen;
 
 	  if(file.good())//entering the learning data to the learning database.
-	  { file.seekg(1);
-	    int c;
-	    file>>c;
-	    c++;
-	    file.seekg(1);file<<c;
-	    while(file.eof()==0){}
-	    file<<h;
-	    file<<w;
-	    file<<gen;
+	  { file<<h<<endl;
+	    file<<w<<endl;
+	    file<<gen<<endl;
 	    cout<<"Learning database is updated. Thank you.";
 	  }
 	  else{cout<<endl<<"file is not good still.";}
@@ -104,9 +96,9 @@ switch(option) //switch for option:: start
 	  algorithm to generate the position of male and female
 	  predictive positions(mean positions of the male and female cluster in the k map cluster).*/
 
-	  p[0].x=ht;p[0].y=wt;
+	  p.x=ht;p.y=wt;
 	  male.x=0;male.y=0;female.x=100;female.y=100;
-	  double distance_m=dist(male,p[0]),distance_f=dist(female,p[0]);
+	  double distance_m=dist(male,p),distance_f=dist(female,p);
 	  //calculating the distance of the user point to the mean category predictive point.
 
 	  if(distance_m>distance_f){cout<<endl<<"This data represents a female.";}
@@ -126,15 +118,11 @@ switch(option) //switch for option:: start
 	  }
 
 	  if(file.good())//filling the learning database according to the feedback.
-	  { file.seekg(1);
-	    int c;
-	    file<<c;
-	    c++;
-	    file.seekg(1);file<<c;
+	  {
 	    while(file.eof()==0){}
-	    file<<ht;
-	    file<<wt;
-	    file<<g;
+	    file<<ht<<endl;
+	    file<<wt<<endl;
+	    file<<g<<endl;
 	  }
 	  else{cout<<endl<<"file is not good still.";}
    break;//to predict the users gender through the data provided..
@@ -143,13 +131,13 @@ switch(option) //switch for option:: start
 	  getch();main();
  }//switch end:
 
-if(file.good())//verify if the file has opened correctly.
+/*if(file.good())//verify if the file has opened correctly.
 { for(int i=0;i<10;i++)//inputting all the files data to the point array that we are using to predict the gender.
   { file>>p[i].x;
     file>>p[i].y;
     file>>p[i].gender;
   }
-}
+}*/
 
 char ch=' ';
 cout<<endl<<"Wanna Try Again::";//asking the user if he/she wants to try the code again.
