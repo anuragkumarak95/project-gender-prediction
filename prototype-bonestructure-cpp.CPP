@@ -140,9 +140,9 @@ switch(option) //switch for option:: start
 }*/
 
 char ch=' ';
-cout<<endl<<"Wanna Try Again::";//asking the user if he/she wants to try the code again.
+cout<<endl<<"Wanna Try Again[y/n]::";//asking the user if he/she wants to try the code again.
  cin>>ch;
- if(ch=='y'||ch=='Y'){cout<<"press ENTER to reset:";main();}
+ if(ch=='y'||ch=='Y'){cout<<"press ENTER to reset:";getch();main();}
  else if(ch=='n'||ch=='N'){exit(1);}
 
 getch();
